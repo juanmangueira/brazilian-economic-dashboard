@@ -25,6 +25,7 @@ projeto-dashboard/
 ````
 
 ## 🛠️ Stack Técnico
+- **Simulação de cliente e assistente de IA**: Perplexity com modelo Claude 4
 - **Backend**: Python, Flask
 - **Transformação**: dbt Core
 - **Banco**: PostgreSQL (Supabase)
