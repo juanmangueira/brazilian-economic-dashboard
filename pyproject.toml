@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "brazilian-economic-data-pipeline"
+version = "0.1.0"
+description = "Pipeline de dados econômicos do Brasil com Flask, dbt e PostgreSQL"
+authors = ["Juan Mangueira juanmangueira@outlook.com"]
+license = "MIT"
+packages = [{ include = "economic_pipeline", from = "src" }]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+flask = "^3.0.0"
+pandas = "^2.1.0"
+requests = "^2.31.0"
+sqlalchemy = "^2.0.0"
+psycopg2-binary = "^2.9.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
