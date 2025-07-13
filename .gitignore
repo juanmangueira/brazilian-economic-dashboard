@@ -19,6 +19,7 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+logs/
 
 # Environment
 .env
@@ -43,9 +44,9 @@ data/processed/*
 !data/processed/.gitkeep
 
 # dbt
-dbt_project/logs/
-dbt_project/target/
-dbt_project/dbt_packages/
+logs/
+dbt_economic_pipeline/target/
+dbt_economic_pipeline/dbt_packages/
 
 # Testing
 .coverage
