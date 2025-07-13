@@ -2,27 +2,6 @@
 ## 🎯 Visão Geral
 Pipeline ELT completo de dados econômicos do Brasil com Flask, dbt, Supabase (PostgreSQL) e dashboard interativo
 
-## Arquitetura inicial
-````
-projeto-dashboard/
-├── data/
-│   ├── raw/              # Dados brutos
-│   └── processed/        # Dados processados
-├── dbt_project/
-│   ├── models/
-│   │   ├── staging/      # Modelos de staging
-│   │   ├── intermediate/ # Transformações intermediárias
-│   │   └── marts/        # Modelos finais
-│   └── dbt_project.yml
-├── app/
-│   ├── app.py           # Flask application
-│   ├── templates/       # HTML templates
-│   └── static/          # CSS/JS
-├── scripts/
-│   ├── extract.py       # Scripts de extração
-│   └── load.py          # Scripts de carregamento
-└── requirements.txt
-````
 
 ## 🛠️ Stack Técnico
 - **Simulação de cliente e assistente de IA**: Perplexity com modelo Claude 4
@@ -59,3 +38,85 @@ projeto-dashboard/
 
 ## 📈 Resultados
 [em breve, screenshots aqui]
+
+## Arquitetura inicial
+````
+brazilian-economic-data-pipeline/
+├── pyproject.toml              # Poetry config (substitui requirements.txt)
+├── poetry.lock                 # Lock file automático do Poetry
+├── README.md
+├── LICENSE
+├── .gitignore
+├── .env.example
+├── src/
+│   └── economic_pipeline/      # Pacote Python principal
+│       ├── __init__.py
+│       ├── main.py            # Entry point principal
+│       ├── app/               # Flask application
+│       │   ├── __init__.py
+│       │   ├── main.py        # Flask app principal
+│       │   ├── routes/        # Rotas organizadas
+│       │   │   ├── __init__.py
+│       │   │   └── dashboard.py
+│       │   ├── templates/     # HTML templates
+│       │   │   ├── base.html
+│       │   │   ├── dashboard.html
+│       │   │   └── components/
+│       │   └── static/        # CSS/JS/Assets
+│       │       ├── css/
+│       │       ├── js/
+│       │       └── img/
+│       ├── extractors/        # Scripts de extração (ex-scripts/)
+│       │   ├── __init__.py
+│       │   ├── main.py
+│       │   ├── ibge.py       # Extrator do IBGE
+│       │   └── bcb.py        # Extrator do Banco Central
+│       ├── loaders/          # Scripts de carregamento
+│       │   ├── __init__.py
+│       │   ├── main.py
+│       │   └── database.py
+│       └── utils/            # Utilitários compartilhados
+│           ├── __init__.py
+│           ├── database.py   # Conexões de banco
+│           ├── config.py     # Configurações
+│           └── validators.py # Validações
+├── dbt_project/              # Projeto dbt (mantido separado)
+│   ├── dbt_project.yml
+│   ├── profiles.yml
+│   ├── models/
+│   │   ├── staging/
+│   │   │   ├── _staging.yml
+│   │   │   ├── stg_pib.sql
+│   │   │   └── stg_inflacao.sql
+│   │   ├── intermediate/
+│   │   │   ├── _intermediate.yml
+│   │   │   └── int_indicadores_economicos.sql
+│   │   └── marts/
+│   │       ├── _marts.yml
+│   │       ├── dim_regioes.sql
+│   │       └── fct_indicadores_mensais.sql
+│   ├── macros/              # Macros dbt customizadas
+│   ├── tests/               # Testes específicos do dbt
+│   └── docs/                # Documentação do dbt
+├── data/                    # Dados de exemplo/desenvolvimento
+│   ├── raw/                 # Dados brutos
+│   │   └── .gitkeep
+│   ├── processed/           # Dados processados
+│   │   └── .gitkeep
+│   └── sample/              # Dados de exemplo para testes
+├── tests/                   # Testes Python
+│   ├── __init__.py
+│   ├── conftest.py         # Configuração pytest
+│   ├── test_extractors/
+│   ├── test_loaders/
+│   ├── test_app/
+│   └── test_utils/
+├── docs/                    # Documentação do projeto
+│   ├── setup.md
+│   ├── architecture.md
+│   └── deployment.md
+└── deployment/              # Configurações de deploy
+    ├── docker-compose.yml
+    ├── Dockerfile
+    └── railway.toml
+````
