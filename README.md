@@ -120,3 +120,46 @@ brazilian-economic-data-pipeline/
     ├── Dockerfile
     └── railway.toml
 ````
+## Configurando Banco de Dados PostgreSQL local
+### Instalar o PostgreSQL
+```
+sudo apt update
+sudo apt install postgresql postgresql-contrib
+```
+### Configurando o PosgreSQL
+Acessando usuário postgres
+```
+sudo -i -u postgres
+```
+
+Entrar no modo de consulta PostgreSQL
+```
+psql
+```
+
+Sair do modo de consulta PostgreSQL
+```
+\q
+```
+
+Criar usuário
+```
+createuser --interactive
+```
+
+Criar banco de dados
+```
+createdb nome_do_banco -O nome_usuario
+```
+
+Alterar senha do usuário criado
+```
+psql 
+ALTER USER nome_usuario WITH PASSWORD 'senha';
+```
+
+Dar privilégios no Banco de Dados a um usuário
+```
+psql
+GRANT ALL PRIVILEGES ON DATABASE nome_db TO nome_usuario;
+```
